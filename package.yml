@@ -1,0 +1,29 @@
+main: MainMethodScanner
+package: find-main
+src: .
+version: 1.0.0
+language: java
+scripts:
+  format: google-java-format -a --replace MainMethodScanner.java
+  lint: >-
+    pmd-cli check
+    -R ruleset.xml
+    -d .
+    --cache out/pmd.cache
+    -r out/pmd-report.txt;
+    cat out/pmd-report.txt
+dependencies:
+  - net.sourceforge.pmd pmd-java:7.21.0 exec
+  - net.sourceforge.pmd pmd-cli:7.21.0 exec
+  - com.google.googlejavaformat google-java-format:1.34.1 exec
+repos:
+  - default: https://repo1.maven.org/maven2/
+args:
+  google-java-format: >-
+    {{addExports}}.api=ALL-UNNAMED
+    {{addExports}}.code=ALL-UNNAMED
+    {{addExports}}.file=ALL-UNNAMED
+    {{addExports}}.parser=ALL-UNNAMED
+    {{addExports}}.tree=ALL-UNNAMED
+    {{addExports}}.util=ALL-UNNAMED
+addExports: --add-exports=jdk.compiler/com.sun.tools.javac
