@@ -121,6 +121,7 @@ public final class MainMethodScanner {
             return !Modifier.isPrivate(modifiers) && mainMethod.getReturnType() == void.class;
         } catch (NoSuchMethodException e) {
             try {
+                //TODO: also find main for JAVA 25
                 Method mainMethodSimple = clazz.getMethod("main", String[].class);
                 int modifiersSimple = mainMethodSimple.getModifiers();
                 return !Modifier.isPrivate(modifiersSimple)
