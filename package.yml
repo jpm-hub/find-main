@@ -1,10 +1,9 @@
-main: MainMethodScanner
+main: find_main.MainMethodScanner
 package: find-main
-src: .
-version: 1.0.0
+version: 1.0.1
 language: java
 scripts:
-  format: google-java-format -a --replace MainMethodScanner.java
+  format: google-java-format --replace MainMethodScanner.java
   lint: >-
     pmd-cli check
     -R ruleset.xml
